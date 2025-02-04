@@ -34,8 +34,8 @@ jobs:
 
       - name: Build project
         run: npm run build
-        # env:
-        #   VITE_BASE_URL: /frontend-mentor-mortgage-replayment-calculator/
+        env:
+          NEXT_PUBLIC_BASE_PATH: /frontend-mentor-personal-finance-app
 
       - name: Upload static files as artifact
         id: deployment
