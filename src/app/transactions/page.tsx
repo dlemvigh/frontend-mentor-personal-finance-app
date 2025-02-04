@@ -1,7 +1,7 @@
 export default function TransactionsPage() {
   return (
     <>
-      Transactions
+      <h1>Transactions</h1>
     </>
   );
 }

@@ -1,7 +1,7 @@
 export default function PotsPage() {
     return (
       <>
-        Pots
+        <h1>Pots</h1>
       </>
     );
   }

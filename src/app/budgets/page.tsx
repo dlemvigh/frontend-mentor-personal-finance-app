@@ -1,7 +1,7 @@
 export default function BudgetsPage() {
     return (
       <>
-        Budgets
+        <h1>Budgets</h1>
       </>
     );
   }

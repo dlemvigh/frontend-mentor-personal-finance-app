@@ -1,7 +1,7 @@
 export default function BillsPage() {
     return (
       <>
-        Recurring bills
+        <h1>Recurring bills</h1>
       </>
     );
   }
