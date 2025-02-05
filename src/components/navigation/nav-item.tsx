@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
 
-import styles from "./navigation.module.css";
+import styles from "./nav-item.module.css";
 import { usePathname } from "next/navigation";
 import cn from "classnames";
 
