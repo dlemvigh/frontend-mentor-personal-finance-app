@@ -18,7 +18,7 @@ export function NavItem({ href, icon, title }: NavItemProps) {
     const isActive = href === path
 
     return (
-        <Link className={cn(styles["nav-item"], isActive && styles["nav-item-active"], "text-preset-5")} href={href}>
+        <Link className={cn(styles["nav-item"], isActive && styles["nav-item-active"])} href={href}>
             <Image className={cn(styles["nav-icon"], isActive && styles["nav-icon-active"])} src={icon} alt={title} width={24} height={24} />
             <span className={styles["nav-title"]}>{title}</span>
         </Link>
