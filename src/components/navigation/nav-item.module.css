@@ -9,11 +9,10 @@
 }
 
 .nav-icon-active {
-    /* hack : set color of svg icon, without changing the svg file */
-    filter: invert(100%) sepia(100%) saturate(5000%) hue-rotate(177deg) saturate(52%);
+    color: var(--color-green);
 }
 
-@media (width >=1440px) {
+@media (width >=1024px) {
     .nav-item {
         padding: 16px 32px;
         gap: 16px;
@@ -35,7 +34,7 @@
     }
 }
 
-@media (width < 1440px) {
+@media (width < 1024px) {
     .nav-title {
         /* text-preset-5 */
         font-family: var(--font-public-sans);
@@ -49,7 +48,7 @@
     }
 }
 
-@media (768px <=width < 1440px) {
+@media (768px <=width < 1024px) {
     .nav-item {
         flex-direction: column;
         gap: 4px;
