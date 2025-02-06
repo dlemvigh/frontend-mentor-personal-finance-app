@@ -13,19 +13,27 @@ export const metadata: Metadata = {
   title: "Frontend Mentor | Personal finance app - Overview",
 };
 
+export function HTMLBodyLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html lang="en">
+      <body className={`${publicSans.variable}`}>
+        {children}
+      </body>
+    </html>
+  );
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${publicSans.variable}`}>
-        <Navigation />
-        <main>
-          {children}
-        </main>
-      </body>
-    </html>
+    <HTMLBodyLayout>
+      <Navigation />
+      <main>
+        {children}
+      </main>
+    </HTMLBodyLayout>
   );
 }
