@@ -12,11 +12,13 @@
     color: var(--color-green);
 }
 
+
 @media (width >=1024px) {
     .nav-item {
         padding: 16px 32px;
         gap: 16px;
         margin-right: 24px;
+        height: 56px;
     }
 
     .nav-title {
@@ -27,7 +29,10 @@
         line-height: 150%;
         letter-spacing: 0;
     }
-
+    .minimized .nav-title {
+        display: none;
+    }
+    
     .nav-item-active {
         border-radius: 0 12px 12px 0;
         box-shadow: inset 5px 0 0 0 var(--color-green);

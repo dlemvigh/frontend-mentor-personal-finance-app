@@ -1,0 +1,28 @@
+.minimize-btn {
+    background-color: transparent;
+    color: inherit;
+    border: none;
+    text-align: left;
+    padding: 16px 32px;
+    margin: 0;
+    margin-top: auto;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.minimized .minimize-indicator {
+    transform: rotate(180deg);
+}
+
+.minimized .minimize-label {
+    display: none;  
+}
+
+@media (width < 1024px) {
+    .minimize-btn {
+        display: none;
+    }
+}
