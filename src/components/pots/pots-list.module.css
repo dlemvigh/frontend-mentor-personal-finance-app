@@ -1,0 +1,11 @@
+.pots-list {
+  display: grid;
+  gap: 24px;
+}
+
+@media (width >= 1024px) {
+  .pots-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+

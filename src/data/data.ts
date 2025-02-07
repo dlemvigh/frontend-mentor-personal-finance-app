@@ -467,8 +467,8 @@ export const data: Data = {
         },
         {
             "name": "Gift",
-            "target": 150.00,
-            "total": 110.00,
+            "target": 60.00,
+            "total": 40.00,
             "theme": "#82C9D7"
         },
         {
