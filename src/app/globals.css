@@ -60,6 +60,7 @@
 .text-preset-4 {
   font-family: var(--font-public-sans);
   font-size: 14px;
+  font-weight: 400;
   line-height: 150%;
   letter-spacing: 0;
 }
@@ -73,6 +74,7 @@
 .text-preset-5 {
   font-family: var(--font-public-sans);
   font-size: 12px;
+  font-weight: 400;
   line-height: 150%;
   letter-spacing: 0;
 }
