@@ -1,7 +1,6 @@
 import classNames from "classnames";
 import styles from "./nav-minimize-button.module.css"
-import icon from "@/assets/images/icon-minimize-menu.svg"
-import Image from "next/image";
+import { NavIconMinimize } from "@/components/icons/nav-icons"
 
 interface NavMinimizeButtonProps {
     minimized: boolean;
@@ -16,7 +15,8 @@ export function NavMinimizeButton({ minimized, setMinimized }: NavMinimizeButton
         onClick={() => setMinimized(!minimized)}
       >
 
-        <Image className={styles["minimize-indicator"]} src={icon} alt="Minimize menu" width={24} height={24} />
+        {/* <Image className={styles["minimize-indicator"]} src={icon} alt="Minimize menu" width={24} height={24} /> */}
+        <NavIconMinimize className={styles["minimize-indicator"]} />
         <span className={styles["minimize-label"]}>Minimize menu</span>
       </button>
 

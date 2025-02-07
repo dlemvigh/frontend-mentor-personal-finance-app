@@ -12,7 +12,9 @@
     align-items: center;
     gap: 16px;
 }
-
+.minimize-btn:hover {
+    color: white;
+}
 .minimized .minimize-indicator {
     transform: rotate(180deg);
 }
