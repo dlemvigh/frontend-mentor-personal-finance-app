@@ -15,10 +15,13 @@
 
 @media (width >=1024px) {
     .nav-item {
-        padding: 16px 32px;
+        padding: 16px 0 16px 32px;
         gap: 16px;
         margin-right: 24px;
         height: 56px;
+    }
+    .minimized.nav-item {
+        margin-right: 8px;
     }
 
     .nav-title {
