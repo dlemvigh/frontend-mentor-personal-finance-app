@@ -35,7 +35,11 @@
 .cell-recipient {
     color: var(--color-grey-900);
     display: flex;
+    align-items: center;
     gap: 16px;
+}
+.cell-recipient-avatar {
+    border-radius: 50%;
 }
 .cell-amount-pos {
     color: var(--color-green);

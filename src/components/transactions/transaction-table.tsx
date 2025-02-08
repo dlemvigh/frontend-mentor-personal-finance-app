@@ -19,8 +19,7 @@ export function TransactionTable({ transactions, pagination }: TreansactionTable
             const { avatar, name } = row.original
             return (
                 <div className={styles["cell-recipient"]}>
-                    <img src={`/assets/images/avatars/${avatar}`} width={40} height={40} alt={`Avatar for ${name}`} />
-                    {/* <Image src={`/assets/images/avatars/${avatar}`} width={40} height={40} alt={`Avatar for ${name}`} /> */}
+                    <Image className={styles["cell-recipient-avatar"]} src={`/images/avatars/${avatar}`} width={40} height={40} alt={`Avatar for ${name}`} />
                     <span className="text-preset-4-bold">{name}</span>
                 </div>
             )
