@@ -22,7 +22,17 @@
     border: 1px solid var(--color-beige-500);
     padding: 15px;
 }
-
+.tertiary {
+    background-color: white;
+    color: var(--color-grey-500);
+    border: 1px solid var(--color-beige-500);
+    padding: 0;
+    min-width: 40px;
+    min-height: 40px;
+}
+.tertiary:hover {
+    color: var(--color-grey-900);
+}
 .danger {
     background-color: var(--color-red);
     color: white;
