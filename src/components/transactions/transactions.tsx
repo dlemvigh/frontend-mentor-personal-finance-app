@@ -17,7 +17,6 @@ interface TreansactionsProps {
 export function Transactions({ transactions }: TreansactionsProps) {
     // TODO filtering 
     // TODO sorting
-    // TODO pagination
     const [pagination, setPagination] = useState<PaginationState>({
         pageIndex: 0,
         pageSize: 20
@@ -80,7 +79,7 @@ export function Transactions({ transactions }: TreansactionsProps) {
 
     return (
     <div className={styles.card}>
-      <TransactionControls />
+      <TransactionControls table={table} transactions={transactions} />
       <TransactionTable table={table} />
       <TransactionPagination table={table} pagination={pagination} />
     </div>
