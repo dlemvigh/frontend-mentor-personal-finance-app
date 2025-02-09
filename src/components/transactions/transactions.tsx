@@ -24,9 +24,10 @@ export function Transactions({ transactions }: TreansactionsProps) {
     const [globalFilter, setGlobalFilter] = useState<string>("")
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
         []
-      )
+    )
 
     const columns = useMemo<ColumnDef<Transaction>[]>(() => [{
+        id: "name",
         header: "Recipient / Sender",
         accessorKey: "name",
         cell: ({ row }) => {
@@ -39,12 +40,14 @@ export function Transactions({ transactions }: TreansactionsProps) {
             )
         }
     }, {
+        id: "category",
         header: "Category",
         accessorKey: "category",
         cell: ({ getValue }) => (
             <span className="text-preset-5">{getValue<string>()}</span>
         )
     }, {
+        id: "date",
         header: "Transaction Date",
         accessorFn: (row) => {
             const date = new Date(row.date)
@@ -55,12 +58,16 @@ export function Transactions({ transactions }: TreansactionsProps) {
             })
             return formatted
         },
+        sortingFn: (a, b) => {
+            return a.original.date.localeCompare(b.original.date)
+        },
         cell: ({ getValue }) => {
             return (
                 <span className="text-preset-5">{getValue<string>()}</span>
             )
         }
     }, {
+        id: "amount",
         header: "Amount",
         accessorKey: "amount",
         cell: ({ getValue }) => {
@@ -78,7 +85,7 @@ export function Transactions({ transactions }: TreansactionsProps) {
         getSortedRowModel: getSortedRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
-        state: { 
+        state: {
             pagination,
             globalFilter,
             columnFilters
@@ -89,10 +96,10 @@ export function Transactions({ transactions }: TreansactionsProps) {
     })
 
     return (
-    <div className={styles.card}>
-      <TransactionControls table={table} transactions={transactions} />
-      <TransactionTable table={table} />
-      <TransactionPagination table={table} pagination={pagination} />
-    </div>
-  );
+        <div className={styles.card}>
+            <TransactionControls table={table} transactions={transactions} />
+            <TransactionTable table={table} />
+            <TransactionPagination table={table} pagination={pagination} />
+        </div>
+    );
 }

@@ -1,5 +1,5 @@
 import { Transaction } from "@/data/data"
-import { Table } from "@tanstack/react-table"
+import { SortingState, Table } from "@tanstack/react-table"
 import { useMemo } from "react"
 
 interface TransactionControlsProps {
@@ -12,15 +12,45 @@ export function TransactionControls({ table, transactions }: TransactionControls
         Array.from(new Set(transactions.map(t => t.category)))
     , [transactions])
 
+    const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const value = e.target.value;
+        let sorting: SortingState;
+
+        switch (value) {
+            case "Latest":
+                sorting = [{ id: "date", desc: true }];
+                break;
+            case "Oldest":
+                sorting = [{ id: "date", desc: false }];
+                break;
+            case "A to Z":
+                sorting = [{ id: "name", desc: false }];
+                break;
+            case "Z to A":
+                sorting = [{ id: "name", desc: true }];
+                break;
+            case "Highest":
+                sorting = [{ id: "amount", desc: true }];
+                break;
+            case "Lowest":
+                sorting = [{ id: "amount", desc: false }];
+                break;
+            default:
+                return;
+        }
+
+        table.setSorting(sorting);
+    };
+
     return (
         <div>
             <input type="text" placeholder="Search transactions" onChange={e => table.setGlobalFilter(String(e.target.value))} />
             <label>Sort by
-                <select>
+                <select onChange={handleSortChange}>
                     <option>Latest</option>
                     <option>Oldest</option>
                     <option>A to Z</option>
-                    <option>Z to a</option>
+                    <option>Z to A</option>
                     <option>Highest</option>
                     <option>Lowest</option>
                 </select>
