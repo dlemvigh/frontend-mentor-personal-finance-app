@@ -14,7 +14,7 @@ export function TransactionControls({ table, transactions }: TransactionControls
 
     return (
         <div>
-            <input type="text" placeholder="Search transactions" />
+            <input type="text" placeholder="Search transactions" onChange={e => table.setGlobalFilter(String(e.target.value))} />
             <label>Sort by
                 <select>
                     <option>Latest</option>

@@ -21,10 +21,12 @@ export function Transactions({ transactions }: TreansactionsProps) {
         pageIndex: 0,
         pageSize: 20
     })
+    const [globalFilter, setGlobalFilter] = useState<string>("")
 
 
     const columns = useMemo<ColumnDef<Transaction>[]>(() => [{
         header: "Recipient / Sender",
+        accessorKey: "name",
         cell: ({ row }) => {
             const { avatar, name } = row.original
             return (
@@ -42,17 +44,18 @@ export function Transactions({ transactions }: TreansactionsProps) {
         )
     }, {
         header: "Transaction Date",
-        accessorKey: "date",
-        cell: ({ getValue }) => {
-            const value = getValue<string>()
-            const date = new Date(value)
+        accessorFn: (row) => {
+            const date = new Date(row.date)
             const formatted = date.toLocaleDateString("en-GB", {
                 day: "numeric",
                 month: "short",
                 year: "numeric"
             })
+            return formatted
+        },
+        cell: ({ getValue }) => {
             return (
-                <span className="text-preset-5">{formatted}</span>
+                <span className="text-preset-5">{getValue<string>()}</span>
             )
         }
     }, {
@@ -73,8 +76,12 @@ export function Transactions({ transactions }: TreansactionsProps) {
         getSortedRowModel: getSortedRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
-        state: { pagination },
-        onPaginationChange: setPagination
+        state: { 
+            pagination,
+            globalFilter
+        },
+        onPaginationChange: setPagination,
+        onGlobalFilterChange: setGlobalFilter
     })
 
     return (
