@@ -26,8 +26,10 @@ export function TransactionControls({ table, transactions }: TransactionControls
                 </select>
             </label>
             <label>Category
-                <select>
-                    <option>All Transactions</option>
+                <select
+                    onChange={e => table.getColumn("category")?.setFilterValue(String(e.target.value))}
+                >
+                    <option value="">All Transactions</option>
                     {categories.map(category => (
                         <option key={category}>{category}</option>
                     ))}

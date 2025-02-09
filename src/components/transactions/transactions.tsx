@@ -6,7 +6,7 @@ import { TransactionControls } from "./transaction-controls";
 import { TransactionTable } from "./transaction-table";
 import styles from "./transactions.module.css"
 import { useMemo, useState } from "react";
-import { ColumnDef, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, PaginationState, useReactTable } from "@tanstack/react-table";
+import { ColumnDef, ColumnFiltersState, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, PaginationState, useReactTable } from "@tanstack/react-table";
 import Image from "next/image";
 import classNames from "classnames";
 
@@ -22,7 +22,9 @@ export function Transactions({ transactions }: TreansactionsProps) {
         pageSize: 20
     })
     const [globalFilter, setGlobalFilter] = useState<string>("")
-
+    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
+        []
+      )
 
     const columns = useMemo<ColumnDef<Transaction>[]>(() => [{
         header: "Recipient / Sender",
@@ -78,10 +80,12 @@ export function Transactions({ transactions }: TreansactionsProps) {
         getPaginationRowModel: getPaginationRowModel(),
         state: { 
             pagination,
-            globalFilter
+            globalFilter,
+            columnFilters
         },
         onPaginationChange: setPagination,
-        onGlobalFilterChange: setGlobalFilter
+        onGlobalFilterChange: setGlobalFilter,
+        onColumnFiltersChange: setColumnFilters
     })
 
     return (
