@@ -1,6 +1,9 @@
 import { Transaction } from "@/data/data"
 import { SortingState, Table } from "@tanstack/react-table"
-import { useMemo } from "react"
+import { Fragment, useMemo } from "react"
+import { Option, Select, Separator } from "../ui/select/select"
+import styles from "./transaction-controls.module.css"
+import classNames from "classnames"
 
 interface TransactionControlsProps {
     table: Table<Transaction>
@@ -12,8 +15,7 @@ export function TransactionControls({ table, transactions }: TransactionControls
         Array.from(new Set(transactions.map(t => t.category)))
     , [transactions])
 
-    const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const value = e.target.value;
+    const handleSortChange = (value: string) => {
         let sorting: SortingState;
 
         switch (value) {
@@ -43,27 +45,37 @@ export function TransactionControls({ table, transactions }: TransactionControls
     };
 
     return (
-        <div>
+        <div className={styles.controls}>
             <input type="text" placeholder="Search transactions" onChange={e => table.setGlobalFilter(String(e.target.value))} />
-            <label>Sort by
-                <select onChange={handleSortChange}>
-                    <option>Latest</option>
-                    <option>Oldest</option>
-                    <option>A to Z</option>
-                    <option>Z to A</option>
-                    <option>Highest</option>
-                    <option>Lowest</option>
-                </select>
+            <label className={classNames(styles.label)}>Sort by
+                <Select defaultValue="Latest" onChange={handleSortChange}>
+                    <Option value="Latest">Latest</Option>
+                    <Separator />
+                    <Option value="Oldest">Oldest</Option>
+                    <Separator />
+                    <Option value="A to Z">A to Z</Option>
+                    <Separator />
+                    <Option value="Z to A">Z to A</Option>
+                    <Separator />
+                    <Option value="Highest">Highest</Option>
+                    <Separator />
+                    <Option value="Lowest">Lowest</Option>
+                </Select>
             </label>
-            <label>Category
-                <select
-                    onChange={e => table.getColumn("category")?.setFilterValue(String(e.target.value))}
+            <label className={classNames(styles.label)}>
+                Category
+                <Select
+                    defaultValue=" "
+                    onChange={value => table.getColumn("category")?.setFilterValue(value)}
                 >
-                    <option value="">All Transactions</option>
+                    <Option value=" ">All Transactions</Option>
                     {categories.map(category => (
-                        <option key={category}>{category}</option>
+                        <Fragment key={category}>
+                            <Separator />
+                            <Option value={category}>{category}</Option>
+                        </Fragment>
                     ))}
-                </select>
+                </Select>
             </label>
         </div>
     )

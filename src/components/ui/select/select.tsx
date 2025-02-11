@@ -7,14 +7,15 @@ import classNames from "classnames"
 
 interface SelectProps {
     placeholder?: string
+    defaultValue?: string
     value?: string
     onChange?: (value: string) => void
     children: ReactNode
 }
 
-export function Select({ value, onChange, placeholder, children } : SelectProps) {
+export function Select({ defaultValue, value, onChange, placeholder, children } : SelectProps) {
     return (
-        <RadixSelect.Root value={value} onValueChange={onChange}>
+        <RadixSelect.Root defaultValue={defaultValue} value={value} onValueChange={onChange}>
             <RadixSelect.Trigger className={classNames(styles.trigger, "text-preset-4")}>
                 <RadixSelect.Value placeholder={placeholder} />
                 <RadixSelect.Icon asChild>
