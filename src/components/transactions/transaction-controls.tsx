@@ -1,9 +1,12 @@
 import { Transaction } from "@/data/data"
 import { SortingState, Table } from "@tanstack/react-table"
 import { Fragment, useMemo } from "react"
-import { Option, Select, Separator } from "../ui/select/select"
+import { Select, Option, Separator } from "../ui/select/select"
 import styles from "./transaction-controls.module.css"
 import classNames from "classnames"
+import Image from "next/image"
+import iconFilter from "@/assets/images/icon-filter-mobile.svg"
+import iconSort from "@/assets/images/icon-sort-mobile.svg"
 
 interface TransactionControlsProps {
     table: Table<Transaction>
@@ -46,9 +49,14 @@ export function TransactionControls({ table, transactions }: TransactionControls
 
     return (
         <div className={styles.controls}>
-            <input type="text" placeholder="Search transactions" onChange={e => table.setGlobalFilter(String(e.target.value))} />
-            <label className={classNames(styles.label)}>Sort by
-                <Select defaultValue="Latest" onChange={handleSortChange}>
+            <input className={styles.search} type="text" placeholder="Search transactions" onChange={e => table.setGlobalFilter(String(e.target.value))} />
+            <label className={classNames(styles.label)}>
+                <span className="mobile-hidden">Sort by</span>
+                <Select
+                    defaultValue="Latest" 
+                    onChange={handleSortChange}
+                    mobileTriggerIcon={<Image src={iconSort} alt="Sort by" />}
+                >
                     <Option value="Latest">Latest</Option>
                     <Separator />
                     <Option value="Oldest">Oldest</Option>
@@ -63,10 +71,12 @@ export function TransactionControls({ table, transactions }: TransactionControls
                 </Select>
             </label>
             <label className={classNames(styles.label)}>
-                Category
+                <span className="mobile-hidden">Category</span>
+                </label>
                 <Select
                     defaultValue=" "
                     onChange={value => table.getColumn("category")?.setFilterValue(value)}
+                    mobileTriggerIcon={<Image src={iconFilter} alt="Filter by Category" />}
                 >
                     <Option value=" ">All Transactions</Option>
                     {categories.map(category => (
@@ -76,8 +86,6 @@ export function TransactionControls({ table, transactions }: TransactionControls
                         </Fragment>
                     ))}
                 </Select>
-            </label>
         </div>
     )
-
 }

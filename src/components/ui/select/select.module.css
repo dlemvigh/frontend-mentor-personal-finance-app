@@ -1,4 +1,10 @@
 .trigger {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.trigger-content {
     padding: 12px 20px;
     border: 1px solid var(--color-beige-500);
     background-color: white;
@@ -6,7 +12,11 @@
     display: flex;
     align-items: center;
     gap: 16px;
-    cursor: pointer;
+}
+@media (width < 768px) {
+    .trigger-mobile {
+
+    }
 }
 
 .content {
