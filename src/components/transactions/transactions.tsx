@@ -19,7 +19,7 @@ export function Transactions({ transactions }: TreansactionsProps) {
     // TODO sorting
     const [pagination, setPagination] = useState<PaginationState>({
         pageIndex: 0,
-        pageSize: 20
+        pageSize: 10
     })
     const [globalFilter, setGlobalFilter] = useState<string>("")
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(

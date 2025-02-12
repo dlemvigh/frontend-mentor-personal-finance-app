@@ -13,7 +13,7 @@ export function TransactionTable({ table }: TreansactionTableProps) {
 
     return (
         <table className={styles.table}>
-            <thead className="mobile-hidden">
+            <thead className={styles.thead}>
                 <tr>
                     {table.getFlatHeaders().map(header => (
                         <th key={header.id} className={classNames(styles.th, "text-preset-5")}>
