@@ -26,16 +26,48 @@ export function Transactions({ transactions }: TreansactionsProps) {
         []
     )
 
-    const columns = useMemo<ColumnDef<Transaction>[]>(() => [{
+    const columns = useMemo<ColumnDef<Transaction>[]>(() => [
+    {
+        id: "mobile-name",
+        cell: ({ row }) => {
+            return (
+                <div className={classNames(styles["cell-recipient-mobile"], "mobile-only")}>
+                    <Image className={styles["cell-recipient-avatar"]} src={`/images/avatars/${row.original.avatar}`} width={40} height={40} alt={`Avatar for ${row.original.name}`} />
+                    <span className={classNames(styles["cell-recipient-name"], "text-preset-4-bold")}>{row.original.name}</span>
+                    <span className="text-preset-5">{row.original.category}</span>
+                </div>
+            )
+        },
+    }, {
+        id: "mobile-amount",
+        header: "",
+        accessorFn: (row) => {
+            const date = new Date(row.date)
+            const formatted = date.toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "short",
+                year: "numeric"
+            })
+            return formatted
+        },
+        cell: ({ row, getValue }) => {
+            const value = row.original.amount
+            return (
+                <div className={classNames(styles["cell-amount-mobile"], "mobile-only")}>
+                    <span className={classNames(value > 0 ? styles["cell-amount-pos"] : styles["cell-amount-neg"], "text-preset-4-bold")} > {value > 0 ? "+" : "-"}${Math.abs(value).toFixed(2)}</span >
+                    <span className="text-preset-5">{getValue<string>()}</span>
+                </div>
+            )
+        }
+    },{
         id: "name",
         header: "Recipient / Sender",
         accessorKey: "name",
         cell: ({ row }) => {
-            const { avatar, name } = row.original
             return (
-                <div className={styles["cell-recipient"]}>
-                    <Image className={styles["cell-recipient-avatar"]} src={`/images/avatars/${avatar}`} width={40} height={40} alt={`Avatar for ${name}`} />
-                    <span className="text-preset-4-bold">{name}</span>
+                <div className={classNames(styles["cell-recipient"], "mobile-hidden")}>
+                    <Image className={styles["cell-recipient-avatar"]} src={`/images/avatars/${row.original.avatar}`} width={40} height={40} alt={`Avatar for ${name}`} />
+                    <span className={classNames(styles["cell-recipient-name"], "text-preset-4-bold")}>{row.original.name}</span>
                 </div>
             )
         }
@@ -44,7 +76,7 @@ export function Transactions({ transactions }: TreansactionsProps) {
         header: "Category",
         accessorKey: "category",
         cell: ({ getValue }) => (
-            <span className="text-preset-5">{getValue<string>()}</span>
+            <span className="text-preset-5 mobile-hidden">{getValue<string>()}</span>
         )
     }, {
         id: "date",
@@ -63,7 +95,7 @@ export function Transactions({ transactions }: TreansactionsProps) {
         },
         cell: ({ getValue }) => {
             return (
-                <span className="text-preset-5">{getValue<string>()}</span>
+                <span className="text-preset-5 mobile-hidden">{getValue<string>()}</span>
             )
         }
     }, {
@@ -73,7 +105,7 @@ export function Transactions({ transactions }: TreansactionsProps) {
         cell: ({ getValue }) => {
             const value = getValue<number>()
             return (
-                <span className={classNames(value > 0 ? styles["cell-amount-pos"] : styles["cell-amount-neg"], "text-preset-4-bold")} > {value > 0 ? "+" : "-"}${Math.abs(value).toFixed(2)}</span >
+                <span className={classNames("mobile-hidden", value > 0 ? styles["cell-amount-pos"] : styles["cell-amount-neg"], "text-preset-4-bold")} > {value > 0 ? "+" : "-"}${Math.abs(value).toFixed(2)}</span >
             )
         }
     }], [])

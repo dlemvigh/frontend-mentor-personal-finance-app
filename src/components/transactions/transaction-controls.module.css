@@ -13,6 +13,7 @@
     display: flex;
     gap: 16px;
     align-items: center;
+    min-width: 0;
 }
 .search:focus-within {
     outline: -webkit-focus-ring-color auto 1px;
@@ -20,12 +21,14 @@
 .search-input {
     border: none;
     outline: none;
-}
-.search-icon {
+    min-width: 0;
+    text-overflow: ellipsis;
 }
 
 .label {
     display: flex;
     align-items: center;
     gap: 8px;
+    white-space: nowrap;
+    color: var(--color-grey-500)
 }
