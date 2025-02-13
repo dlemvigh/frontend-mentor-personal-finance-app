@@ -1,4 +1,5 @@
 import { data } from './data';
+import { Temporal } from 'temporal-polyfill';
 
 export async function getOverviewData() {
     return {
@@ -6,7 +7,6 @@ export async function getOverviewData() {
         pots: data.pots.slice(0, 4),
         budgets: data.budgets,
         transactions: data.transactions.slice(0, 5),
-        recurrings: (await getRecurrings()).slice(0, 3)
     }
 }
 
@@ -22,6 +22,10 @@ export async function getPots() {
     return data.pots;
 }
 
-export async function getRecurrings() {
-    return data.transactions.filter((transaction) => transaction.recurring);
+export async function getRecurringBills() {
+    const latestTransactionDate = Temporal.PlainMonthDay.from(data.transactions[0].date)
+    // return data.transactions.filter((transaction) => transaction.recurring);
+    return {
+        latestTransactionDate
+    }
 }
