@@ -14,12 +14,13 @@
     "cypress:open": "cypress open"
   },
   "dependencies": {
-    "@tanstack/react-table": "^8.20.6",
     "@radix-ui/react-select": "^2.1.6",
+    "@tanstack/react-table": "^8.20.6",
     "classnames": "^2.5.1",
     "next": "15.1.6",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "temporal-polyfill": "^0.2.5"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.26.7",
