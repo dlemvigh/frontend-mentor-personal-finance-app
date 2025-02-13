@@ -36,7 +36,9 @@ export function TransactionPagination({ table, pagination }: TransactionPaginati
         <div className={styles.pagination}>
             <Button className={styles.prev} variant="tertiary" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
                 <PrevIcon />
-                Prev
+                <span className="mobile-hidden">
+                    Prev
+                </span>
             </Button>
             {pages.map(index => {
                 const isCurrent = pagination.pageIndex === index;
@@ -46,7 +48,9 @@ export function TransactionPagination({ table, pagination }: TransactionPaginati
             })}
 
             <Button className={styles.next} variant="tertiary" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
-                Next
+                <span className="mobile-hidden">
+                    Next
+                </span>
                 <NextIcon />
             </Button>
         </div>

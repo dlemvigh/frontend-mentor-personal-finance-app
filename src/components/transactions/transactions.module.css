@@ -11,17 +11,31 @@
 @media (width < 768px) {
     .card {
         padding: 24px 20px;
+        gap: 0;
     }
 }
-
+.cell-recipient-mobile {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    row-gap: 4px;
+    column-gap: 12px;
+}
+.cell-amount-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
 .cell-recipient {
-    color: var(--color-grey-900);
     display: flex;
     align-items: center;
     gap: 16px;
 }
+.cell-recipient-name {
+    color: var(--color-grey-900);
+}
 .cell-recipient-avatar {
     border-radius: 50%;
+    grid-row: span 2;
 }
 .cell-amount-pos {
     color: var(--color-green);

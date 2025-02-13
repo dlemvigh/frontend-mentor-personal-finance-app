@@ -2,24 +2,33 @@ import { ReactNode } from "react"
 import * as RadixSelect from "@radix-ui/react-select"
 import styles from "./select.module.css"
 import iconCaretDown from "@/assets/images/icon-caret-down.svg"
-import Image from "next/image"
 import classNames from "classnames"
+import Image from "next/image"
 
 interface SelectProps {
     placeholder?: string
+    defaultValue?: string
     value?: string
     onChange?: (value: string) => void
     children: ReactNode
+    mobileTriggerIcon?: ReactNode
 }
 
-export function Select({ value, onChange, placeholder, children } : SelectProps) {
+export function Select({ defaultValue, value, onChange, placeholder, mobileTriggerIcon, children } : SelectProps) {
+
     return (
-        <RadixSelect.Root value={value} onValueChange={onChange}>
-            <RadixSelect.Trigger className={classNames(styles.trigger, "text-preset-4")}>
-                <RadixSelect.Value placeholder={placeholder} />
-                <RadixSelect.Icon asChild>
-                    <Image src={iconCaretDown} alt="" />
-                </RadixSelect.Icon>
+        <RadixSelect.Root defaultValue={defaultValue} value={value} onValueChange={onChange}>            
+            <RadixSelect.Trigger className={classNames(styles.trigger, "text-preset-4", !!mobileTriggerIcon && styles["trigger-mobile"])}>
+                <div className={classNames("mobile-only", styles["trigger-content-mobile"])}>
+                    {mobileTriggerIcon}
+                </div>
+                <div className={classNames(!!mobileTriggerIcon && "mobile-hidden", styles["trigger-content"])}>
+                    <RadixSelect.Value placeholder={placeholder} />
+                    <RadixSelect.Icon asChild>
+                        <Image src={iconCaretDown} alt="" />
+                    </RadixSelect.Icon>
+                </div>
+                
             </RadixSelect.Trigger>
             <RadixSelect.Portal>
                 <RadixSelect.Content className={styles.content} position="popper">

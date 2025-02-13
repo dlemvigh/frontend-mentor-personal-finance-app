@@ -5,6 +5,16 @@
 .tr {
     border-top: 1px solid var(--color-grey-100);
 }
+@media (width < 768px) {
+    /* Hide table headers on mobile */
+    .thead {
+        display: none;
+    }
+    /* When thead is hidden, don't show border-top on first row */
+    .tr:first-child {
+        border-top: none;
+    }
+}
 
 .th, .td {
     padding: 16px 0;
