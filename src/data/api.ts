@@ -23,7 +23,7 @@ export async function getPots() {
 }
 
 export async function getRecurringBills() {
-    const latestTransactionDate = Temporal.PlainMonthDay.from(data.transactions[0].date)
+    const latestTransactionDate = Temporal.PlainMonthDay.from(data.transactions[0].date.substring(0, 10))
     // return data.transactions.filter((transaction) => transaction.recurring);
     return {
         latestTransactionDate
