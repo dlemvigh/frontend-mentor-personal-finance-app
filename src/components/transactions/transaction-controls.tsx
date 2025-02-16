@@ -1,13 +1,15 @@
 import { Transaction } from "@/data/data"
 import { SortingState, Table } from "@tanstack/react-table"
 import { Fragment, useMemo } from "react"
-import { Select, Option, Separator } from "../ui/select/select"
+import { NativeSelect, Option, Separator } from "../ui/select/select"
 import styles from "./transaction-controls.module.css"
 import classNames from "classnames"
 import Image from "next/image"
 import iconSearch from "@/assets/images/icon-search.svg"
 import iconFilter from "@/assets/images/icon-filter-mobile.svg"
 import iconSort from "@/assets/images/icon-sort-mobile.svg"
+import { SortBySelect } from "../ui/select/sort-by-select"
+import { FilterBySelect } from "../ui/select/filter-by-select"
 
 interface TransactionControlsProps {
     table: Table<Transaction>
@@ -15,9 +17,9 @@ interface TransactionControlsProps {
 }
 
 export function TransactionControls({ table, transactions }: TransactionControlsProps) {
-    const categories = useMemo(() => 
+    const categories = useMemo(() =>
         Array.from(new Set(transactions.map(t => t.category)))
-    , [transactions])
+        , [transactions])
 
     const handleSortChange = (value: string) => {
         let sorting: SortingState;
@@ -56,40 +58,16 @@ export function TransactionControls({ table, transactions }: TransactionControls
             </div>
             <label className={classNames(styles.label)}>
                 <span className="mobile-hidden">Sort by</span>
-                <Select
-                    defaultValue="Latest" 
-                    onChange={handleSortChange}
-                    mobileTriggerIcon={<Image src={iconSort} alt="Sort by" />}
-                >
-                    <Option value="Latest">Latest</Option>
-                    <Separator />
-                    <Option value="Oldest">Oldest</Option>
-                    <Separator />
-                    <Option value="A to Z">A to Z</Option>
-                    <Separator />
-                    <Option value="Z to A">Z to A</Option>
-                    <Separator />
-                    <Option value="Highest">Highest</Option>
-                    <Separator />
-                    <Option value="Lowest">Lowest</Option>
-                </Select>
+                <SortBySelect onChange={handleSortChange} />
             </label>
             <label className={classNames(styles.label)}>
                 <span className="mobile-hidden">Category</span>
-                </label>
-                <Select
-                    defaultValue=" "
+                <FilterBySelect
+                    allOptionsText="All Transactions"
+                    options={categories}
                     onChange={value => table.getColumn("category")?.setFilterValue(value)}
-                    mobileTriggerIcon={<Image src={iconFilter} alt="Filter by Category" />}
-                >
-                    <Option value=" ">All Transactions</Option>
-                    {categories.map(category => (
-                        <Fragment key={category}>
-                            <Separator />
-                            <Option value={category}>{category}</Option>
-                        </Fragment>
-                    ))}
-                </Select>
+                />
+            </label>
         </div>
     )
 }
