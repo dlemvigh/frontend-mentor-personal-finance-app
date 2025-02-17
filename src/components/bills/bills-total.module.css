@@ -1,0 +1,15 @@
+.card {
+    background-color: var(--color-grey-900);
+    color: white;
+    padding: 24px;
+    border-radius: 12px;
+}
+
+.icon {
+    display: block;
+    margin-bottom: 32px;
+}
+
+.title {
+    margin-bottom: 12px;
+}

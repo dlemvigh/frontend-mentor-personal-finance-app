@@ -6,9 +6,10 @@
     "^(next/(.*)$)|^(next$)",
     "<THIRD_PARTY_MODULES>",
     "",
-    "^@/(.*)$",
+    "^@/(?!.*\\.(css|scss|png|jpg|jpeg|gif|svg)$)(.*)$",
     "^(?!.*\\.(css|scss|png|jpg|jpeg|gif|svg)$)[./]",
     "",
+    "^@/(.*)(png|jpg|jpeg|gif|svg)$",
     "^.+\\.(png|jpg|jpeg|gif|svg)$",
     "^.+\\.(css|scss)$"
   ],
