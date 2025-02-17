@@ -1,0 +1,31 @@
+.card {
+    background-color: white;
+    color: var(--color-grey-900);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.title {
+    margin-bottom: 20px;
+}
+
+.list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 16px;
+}
+
+.list-data {
+    justify-self: end;
+}
+
+.list-due {
+    color: var(--color-red)
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid #696868;
+    opacity: 15%;
+    grid-column: span 2;
+}
