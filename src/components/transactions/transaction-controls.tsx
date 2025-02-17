@@ -1,13 +1,9 @@
 import { Transaction } from "@/data/data"
 import { SortingState, Table } from "@tanstack/react-table"
-import { Fragment, useMemo } from "react"
-import { NativeSelect, Option, Separator } from "../ui/select/select"
-import styles from "./transaction-controls.module.css"
+import { useMemo } from "react"
 import classNames from "classnames"
-import Image from "next/image"
-import iconSearch from "@/assets/images/icon-search.svg"
-import iconFilter from "@/assets/images/icon-filter-mobile.svg"
-import iconSort from "@/assets/images/icon-sort-mobile.svg"
+import styles from "./transaction-controls.module.css"
+import { SearchInput } from "../ui/input/search-input"
 import { SortBySelect } from "../ui/select/sort-by-select"
 import { FilterBySelect } from "../ui/select/filter-by-select"
 
@@ -52,10 +48,10 @@ export function TransactionControls({ table, transactions }: TransactionControls
 
     return (
         <div className={styles.controls}>
-            <div className={styles["search"]}>
-                <input className={styles["search-input"]} type="text" placeholder="Search transactions" onChange={e => table.setGlobalFilter(String(e.target.value))} />
-                <Image className={styles["search-icon"]} src={iconSearch} alt="" width={16} height={16} />
-            </div>
+            <SearchInput 
+                placeholder="Search transactions" 
+                onChange={value => table.setGlobalFilter(value)}
+            />
             <label className={classNames(styles.label)}>
                 <span className="mobile-hidden">Sort by</span>
                 <SortBySelect onChange={handleSortChange} />
