@@ -9,6 +9,7 @@ import { useMemo, useState } from "react";
 import { ColumnDef, ColumnFiltersState, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, PaginationState, useReactTable } from "@tanstack/react-table";
 import Image from "next/image";
 import classNames from "classnames";
+import { Table } from "../ui/table/table";
 
 interface TreansactionsProps {
     transactions: Transaction[];
@@ -130,7 +131,7 @@ export function Transactions({ transactions }: TreansactionsProps) {
     return (
         <div className={styles.card}>
             <TransactionControls table={table} transactions={transactions} />
-            <TransactionTable table={table} />
+            <Table table={table} />
             <TransactionPagination table={table} pagination={pagination} />
         </div>
     );
