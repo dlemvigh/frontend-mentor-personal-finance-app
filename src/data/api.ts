@@ -1,5 +1,6 @@
 import { data } from "./data";
 export * from "./api-recurring-bills"
+export * from "./api-budgets"
 
 export async function getOverviewData() {
   return {
@@ -14,9 +15,6 @@ export async function getTransactions() {
   return data.transactions;
 }
 
-export async function getBudgets() {
-  return data.budgets;
-}
 
 export async function getPots() {
   return data.pots;
