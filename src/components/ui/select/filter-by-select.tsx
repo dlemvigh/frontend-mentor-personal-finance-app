@@ -7,7 +7,7 @@ interface FilterBySelectProps extends FilterByOptionsProps {
 }
 
 export function FilterBySelect({ onChange, allOptionsText, options }: FilterBySelectProps) {
-    const [value, setValue] = useState("Latest")
+    const [value, setValue] = useState(" ")
 
     const handleChange = useCallback((value: string) => {
         setValue(value)

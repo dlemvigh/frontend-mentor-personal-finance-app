@@ -1,0 +1,30 @@
+.card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 32px;
+}
+
+.table {
+    width: 100%;
+}
+
+.cell-title {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.cell-title-avatar {
+    border-radius: 50%;
+}
+
+.cell-date {
+    color: var(--color-green);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cell-amount-due {
+    color: var(--color-red)
+}
