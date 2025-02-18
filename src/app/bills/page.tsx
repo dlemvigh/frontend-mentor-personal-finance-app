@@ -5,7 +5,7 @@ export default async function BillsPage() {
     const data = await getRecurringBills();
     return (
       <>
-        <h1>Recurring bills</h1>
+        <h1 style={{ marginBottom: 24 }}>Recurring bills</h1>
         <Bills data={data} />
       </>
     );
