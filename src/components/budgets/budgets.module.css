@@ -1,0 +1,20 @@
+.layout {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;   
+    align-items: start;
+}
+
+@media (width < 1024px) {
+    .layout {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+.budget-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    flex-grow: 1;
+}

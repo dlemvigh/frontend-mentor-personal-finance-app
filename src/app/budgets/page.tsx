@@ -13,8 +13,7 @@ export default async function BudgetsPage() {
           + Add New Budget
         </Button>
       </div>
-      <Budgets />
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      <Budgets budgets={data} />
     </>
   )
 }

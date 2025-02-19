@@ -1,12 +1,12 @@
 import { Temporal } from "temporal-polyfill";
-import { getLatestTransactionDate } from "./api-shared";
 import { data, Transaction } from "./data";
 
 export interface BudgetsData {
     category: string;
-    maximum: number;
     theme: string;
+    maximum: number;
     spent: number;
+    remaining: number;
     transactions: Transaction[];
 }
 
@@ -18,9 +18,12 @@ export async function getBudgets() {
         const transactionsThisMonth = transactions.filter(x => Temporal.PlainDate.from(x.date.substring(0, 10)).with({ day: 1 }).equals(startOfMonth))
         
         const spentThisMonth = transactionsThisMonth.reduce((acc, transaction) => acc - transaction.amount, 0)
+        const remainingThisMonth = budget.maximum - spentThisMonth
+
         return {
             ...budget,
             spent: spentThisMonth,
+            remaining: remainingThisMonth,
             transactions: transactions.slice(0, 3),
         }
     })
