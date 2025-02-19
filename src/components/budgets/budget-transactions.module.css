@@ -1,0 +1,42 @@
+.budget-transactions {
+    background-color: var(--color-beige-100);
+    border-radius: 12px;
+    padding: 20px 20px 4px;
+}
+.budget-transactions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.budget-transactions-header-link {
+    color: var(--color-grey-500);
+}
+.budget-transactions-table {
+    width: 100%;
+}
+.budget-transactions-table tr {
+    border-top-color: #69686838;
+}
+.budget-transactions-table td:first-child {
+    padding-left: 0;
+}
+.budget-transactions-table td:last-child {
+    padding-right: 0;
+}
+.cell-name {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: var(--color-grey-900);
+}
+.cell-name-avatar {
+    border-radius: 50%
+}
+.cell-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.cell-details-amount {
+    color: var(--color-grey-900)
+}

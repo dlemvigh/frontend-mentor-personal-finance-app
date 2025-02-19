@@ -3,11 +3,24 @@
     padding: 32px;
     background-color: white;
     min-width: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+@media (1024px > width >= 768px) {
+    .card {
+        flex-direction: row;
+    }
+}
+.pie-chart {
+    align-self: center;
+}
+.summary {
+    flex-grow: 1;
 }
 .title {
     margin-bottom: 24px;
 }
-
 .budget {
     color: var(--color-grey-500);
     display: flex;
