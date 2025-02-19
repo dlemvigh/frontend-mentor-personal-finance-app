@@ -1,0 +1,13 @@
+.controls {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    color: var(--color-grey-500)
+}
