@@ -1,10 +1,13 @@
 "use client"
 
-import { useMemo } from "react"
+import { useMemo, useState } from "react"
 import Image from "next/image"
 import {
   ColumnDef,
+  ColumnFiltersState,
   getCoreRowModel,
+  getFilteredRowModel,
+  getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table"
 import classNames from "classnames"
@@ -40,14 +43,19 @@ function getSuffix(dayOfMonth: number) {
 }
 
 export function BillsTable({ bills }: BillsTableProps) {
-  const columns = useMemo<ColumnDef<RecurringBill>[]>(
+    const [globalFilter, setGlobalFilter] = useState<string>("")
+    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
+        []
+    )
+
+    const columns = useMemo<ColumnDef<RecurringBill>[]>(
     () => [
       {
         id: "name",
         header: "Bill Title",
         accessorKey: "name",
         cell: ({ row }) => (
-          <div className={styles["cell-title"]}>
+          <div className={classNames(styles["cell-title"])}>
             <Image
               className={styles["cell-title-avatar"]}
               src={`/images/avatars/${row.original.avatar}`}
@@ -62,10 +70,11 @@ export function BillsTable({ bills }: BillsTableProps) {
       {
         id: "date",
         header: "Due Date",
-        cell: ({ row }) => {
+        accessorFn: (row) => `Monthly - ${getDayOfMonthWithSuffix(row.dayOfMonth)}`,
+        cell: ({ row, getValue }) => {
           return (
             <span className={classNames("text-preset-5", styles["cell-date"])}>
-              {`Monthly - ${getDayOfMonthWithSuffix(row.original.dayOfMonth)}`}
+              {getValue<string>()}
               {row.original.status === "Paid" && (
                 <Image src={iconPaid} width={16} height={16} alt="Paid" />
               )}
@@ -79,9 +88,8 @@ export function BillsTable({ bills }: BillsTableProps) {
       {
         id: "amount",
         header: "Amount",
-        accessorKey: "amount",
+        accessorFn: (row) => `$${row.amount.toFixed(2)}`,
         cell: ({ row, getValue }) => {
-          const value = getValue<number>()
           const due = row.original.status === "Due"
           return (
             <span
@@ -91,7 +99,7 @@ export function BillsTable({ bills }: BillsTableProps) {
                 due && styles["cell-amount-due"],
               )}
             >
-              ${value.toFixed(2)}
+              {getValue<string>()}
             </span>
           )
         },
@@ -104,6 +112,14 @@ export function BillsTable({ bills }: BillsTableProps) {
     columns,
     data: bills,
     getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    state: {
+      columnFilters,
+      globalFilter
+    },
+    onGlobalFilterChange: setGlobalFilter,
+    onColumnFiltersChange: setColumnFilters
   })
   return (
     <div className={styles.card}>
