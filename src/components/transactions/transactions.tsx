@@ -9,6 +9,7 @@ import { ColumnDef, ColumnFiltersState, getCoreRowModel, getFilteredRowModel, ge
 import Image from "next/image";
 import classNames from "classnames";
 import { Table } from "../ui/table/table";
+import { formatDate } from "@/utils/string-utils";
 
 interface TreansactionsProps {
     transactions: Transaction[];
@@ -81,15 +82,7 @@ export function Transactions({ transactions }: TreansactionsProps) {
     }, {
         id: "date",
         header: "Transaction Date",
-        accessorFn: (row) => {
-            const date = new Date(row.date)
-            const formatted = date.toLocaleDateString("en-GB", {
-                day: "numeric",
-                month: "short",
-                year: "numeric"
-            })
-            return formatted
-        },
+        accessorFn: (row) => formatDate(row.date),
         sortingFn: (a, b) => {
             return a.original.date.localeCompare(b.original.date)
         },

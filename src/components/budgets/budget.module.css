@@ -3,3 +3,95 @@
     padding: 32px;
     border-radius: 12px;
 }
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+.title::before {
+    content: "";
+    display: block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--budget-color);
+}
+
+.sub-title {
+    display: block;
+    color: var(--color-grey-500);
+    margin-bottom: 16px;
+}
+
+.progress {
+    margin-bottom: 16px;
+}
+
+.legend {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+.legend-item {
+    display: grid;
+    grid-template-columns: auto 1fr;    
+    row-gap: 4px;
+    column-gap: 16px;
+}
+
+.legend-item-addon {
+    display: block;
+    width: 4px;
+    border-radius: 2px;
+    background-color: var(--color-beige-100);
+    grid-row: span 2;
+}
+.legend-item-addon-color {
+    background-color: var(--budget-color)
+}
+
+.budget-transactions {
+    background-color: var(--color-beige-100);
+    border-radius: 12px;
+    padding: 20px 20px 4px;
+}
+.budget-transactions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.budget-transactions-header-link {
+    color: var(--color-grey-500);
+}
+.budget-transactions-table {
+    width: 100%;
+}
+.budget-transactions-table tr {
+    border-top-color: #69686838;
+}
+.budget-transactions-table td:first-child {
+    padding-left: 0;
+}
+.budget-transactions-table td:last-child {
+    padding-right: 0;
+}
+.cell-name {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: var(--color-grey-900);
+}
+.cell-name-avatar {
+    border-radius: 50%
+}
+.cell-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.cell-details-amount {
+    color: var(--color-grey-900)
+}

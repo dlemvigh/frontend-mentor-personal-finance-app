@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { SortingState, Table } from '@tanstack/react-table'
 import classNames from 'classnames'
 

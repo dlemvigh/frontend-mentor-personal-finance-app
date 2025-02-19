@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useState } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 import { IconSelect, NativeSelect, Option, Separator } from "./select";
 import iconFilter from "@/assets/images/icon-filter-mobile.svg"
 
@@ -7,13 +7,27 @@ interface FilterBySelectProps extends FilterByOptionsProps {
 }
 
 export function FilterBySelect({ onChange, allOptionsText, options }: FilterBySelectProps) {
-    const [value, setValue] = useState(" ")
+    const [value, setValue] = useState(allOptionsText)
 
     const handleChange = useCallback((value: string) => {
         setValue(value)
-        onChange(value)
+        if (value === allOptionsText) {
+            onChange("")            
+        } else {
+            onChange(value)
+        }
     }, [onChange])
 
+    useEffect(() => {
+        // get category from query params
+        const url = new URL(window.location.href)
+        const category = url.searchParams.get('category')
+        if (category && options.includes(category)) {
+          onChange(category)
+          setValue(category)
+        }
+      }, [])
+    
     return (
         <>
             <div className="mobile-hidden">
@@ -45,7 +59,7 @@ interface FilterByOptionsProps {
 function FilterByOptions({ allOptionsText, options }: FilterByOptionsProps) {
     return (
         <>
-            <Option value=" ">{allOptionsText}</Option>
+            <Option value={allOptionsText}>{allOptionsText}</Option>
             {options.map(option => (
                 <Fragment key={option}>
                     <Separator />

@@ -18,7 +18,7 @@ export async function getBudgets() {
         const transactionsThisMonth = transactions.filter(x => Temporal.PlainDate.from(x.date.substring(0, 10)).with({ day: 1 }).equals(startOfMonth))
         
         const spentThisMonth = transactionsThisMonth.reduce((acc, transaction) => acc - transaction.amount, 0)
-        const remainingThisMonth = budget.maximum - spentThisMonth
+        const remainingThisMonth = Math.max(0, budget.maximum - spentThisMonth)
 
         return {
             ...budget,

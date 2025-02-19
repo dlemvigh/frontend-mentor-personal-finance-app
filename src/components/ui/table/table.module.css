@@ -15,6 +15,12 @@
         border-top: none;
     }
 }
+.hide-header .thead {
+    display: none;
+}
+.hide-header .tr:first-child {
+    border-top: none;
+}
 
 .th, .td {
     padding: 16px 0;
