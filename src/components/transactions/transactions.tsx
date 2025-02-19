@@ -3,7 +3,6 @@
 import { Transaction } from "@/data/data";
 import { TransactionPagination } from "./transaction-pagination";
 import { TransactionControls } from "./transaction-controls";
-import { TransactionTable } from "./transaction-table";
 import styles from "./transactions.module.css"
 import { useMemo, useState } from "react";
 import { ColumnDef, ColumnFiltersState, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, PaginationState, useReactTable } from "@tanstack/react-table";

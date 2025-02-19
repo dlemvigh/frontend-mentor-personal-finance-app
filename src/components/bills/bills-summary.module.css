@@ -3,6 +3,7 @@
     color: var(--color-grey-900);
     padding: 20px;
     border-radius: 12px;
+    min-width: max-content;
 }
 
 .title {
@@ -11,9 +12,10 @@
 
 .list {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     row-gap: 16px;
+    column-gap: 24px;
 }
+
 
 .list-data {
     justify-self: end;
